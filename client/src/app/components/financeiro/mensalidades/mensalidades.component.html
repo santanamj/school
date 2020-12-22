@@ -1,0 +1,79 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+        <div class="card-body">  
+    <h3 class="card-title">Criar mensalidade</h3>
+  
+    <form [formGroup]="form" (submit)="registroSubmit()">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+             
+              <div class="md-form">
+                <input mdbInput type="text" class="form-control" formControlName="amount" 
+                appAllowDecimalNumber (blur)="transformTotal()" placeholder="Valor do boleto">
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="md-form">
+                <mat-label>Data vencimento</mat-label>
+                <mat-form-field>           
+                  <input matInput [matDatepicker]="picker" formControlName="boletoPagamento">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker startView="year"></mat-datepicker>
+                </mat-form-field>  
+              </div>
+            </div>
+      
+      <div class="col-sm">  
+        <br/>
+        <div class="md-form"  >
+          <select class="browser-default custom-select" formControlName="tipo" name="tipo">
+            <option value="" disabled selected>Tipo de pagamento</option>
+            <option [value]="tipo.id" *ngFor="let tipo of tipos">{{tipo.name}}</option>
+            
+          </select>
+        </div></div>
+            <div class="col-sm">
+              <br/>
+              <div class="md-form">
+                <input mdbInput type="text" name="observacao" formControlName="observacao"
+                  placeholder="Observação"/>
+              </div>
+            </div>    
+          </div>  
+          <div class="row"  >
+            <div class="col-sm">  
+              <div class="md-form" >
+                <select class="browser-default custom-select" (change)="selectParcelas($event)">
+                  <option value="" disabled selected>Quantidade de parcelas</option>
+                  <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                   <option value="5">5</option>
+                   <option value="6">6</option>
+                   <option value="7">7</option>
+                   <option value="8">8</option>
+                   <option value="9">9</option>
+                   <option value="10">10</option>
+                   <option value="11">11</option>
+                   <option value="12">12</option>
+                 </select>
+               </div>        
+             </div>     
+          </div>
+        </div>
+      
+        <button *ngIf="aluno" class="btn btn-primary btn-round " [routerLink]="['/aluno/perfil-aluno/', aluno?._id]"   >Voltar para página do aluno</button>
+     
+        <button type="submit" name="button" class="btn btn-primary btn-round "  [disabled]="!form.valid" >Criar mensalidade</button>
+      </form>
+      </div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,287 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+    <div class="row doNotPrint" >
+        <div class="col-md-12">
+             <div class="card">
+            <form [formGroup]="dataForm" (submit)="submit()">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>Selecione a(s) mensalidade(s)</h4>
+                    </div>
+                    <div class="divider dropdown-divider"></div>
+                    <div formArrayName="nomes" ngDefaultControl *ngFor="let order of dataForm.controls.nomes.controls; let i = index">
+
+                        <input type="checkbox" [formControlName]="i" ngDefaultControl [default]="true" for="dataTituloBoleto">
+                            {{mensalidades[i]?.vctmen | date: 'dd/MM/yyyy'}}
+                        <div class="divider dropdown-divider"></div>
+                    </div>
+                </div>
+                <button type="submit" name="button"  class="btn btn-primary btn-round" (click)="submit()" type="submit" >Listar mensalidade</button>
+            </form>
+            
+                <button  name="button" class="btn btn-secundary btn-round"  (click)="voltar()" >Voltar para página do sócio</button>
+            
+        </div>
+    </div>
+    </div>
+    <div class="row" >
+        
+        <div class="col-sm-2 left-boleto">
+          <table width="100%" height="350px" *ngFor="let boleto of infoMensalidades" >
+           
+            <tr> 
+           
+             </tr>
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>Vencimento</td>
+               
+              </tr>
+              <tr style="line-height:14px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >{{boleto?.vctmen | date: 'dd/MM/yyyy'}}</td>
+              
+              </tr>  
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>Agencia/Código do Cedente
+                   </td>
+               
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                 
+                </td>
+              
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>Nosso número</td>
+               
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist ></td>
+              
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>(=) Valor do Documento</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >{{boleto?.vlrmen | currency:'BRL':true}}</td>          
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>(-) Desconto / Abatimento</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                
+                </td> 
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>(-) Outras deduções</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                
+                </td> 
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>(+) Juros / Mora / Multa</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                
+                </td>   
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>(-) Outros Acrécimos</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                
+                </td> 
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>(-) Outros Acrécimos</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                
+                </td> 
+              </tr> 
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>(=) Valor cobrado</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                
+                </td> 
+              </tr>
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>Pagador</td>           
+              </tr>
+              <tr style="line-height:10px" *ngFor="let pagador of responsaveList" >
+                <td colspan=12 class=BoletoValorEsquerdoFist >
+                  {{pagador?.nome}}
+                </td>          
+              </tr>
+              <tr style="line-height:8px">
+                <td colspan=12 class=BoletoTituloEsquerdoFirst>CFP/ CNPJ Pagador</td>           
+              </tr>
+              <tr style="line-height:10px">
+                <td colspan=12 *ngFor="let pagador of responsaveList" class=BoletoValorEsquerdoFist >
+                  {{pagador?.cpfResponsavel}}
+                </td>          
+              </tr>
+              <td height="135px"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </table>
+        </div>
+        
+        <div class="col-sm-9">
+    <table cellSpacing=0 cellPadding=0 border=0 class=Boleto width="100%" *ngFor="let boleto of infoMensalidades">
+      
+      <tr>
+        <td style='width: 0.9cm'></td>
+        <td style='width: 1cm'></td>
+        <td style='width: 1.9cm'></td>
+        
+        <td style='width: 0.5cm'></td>
+        <td style='width: 1.3cm'></td>
+        <td style='width: 0.8cm'></td>
+        <td style='width: 1cm'></td>
+        
+        <td style='width: 1.9cm'></td>
+        <td style='width: 1.9cm'></td>
+        
+        <td style='width: 3.8cm'></td>
+        
+        <td style='width: 3.8cm'></td>
+     
+      <tr><td colspan=11 class=BoletoPontilhado>&nbsp;</td></tr>
+      <tr>
+        <td colspan=4 class=BoletoLogo></td>
+        <td colspan=2 class=BoletoCodigoBanco></td>
+        <td colspan=6 class=BoletoLinhaDigitavel  >
+          {{boleto.codigo}}</td>
+      </tr>
+      <tr style="line-height:8px">
+        <td colspan=10 class=BoletoTituloEsquerdo>Local de Pagamento</td>
+        <td class=BoletoTituloDireito>Vencimento</td>
+      </tr>
+      <tr style="line-height:10px">
+        <td colspan=10 class=BoletoValorEsquerdo style='text-align: left; padding-left : 0.1cm'>
+         Pagável somento no emissor</td>
+        <td class=BoletoValorDireito>{{boleto.vctmen | date: 'dd/MM/yyyy'}}</td>
+      </tr>  
+      <tr style="line-height:8px">
+        <td colspan=10 class=BoletoTituloEsquerdo>Beneficiário</td>
+        <td class=BoletoTituloDireito>Agência/Código do Cedente</td>
+      </tr>
+      <tr style="line-height:10px" *ngFor="let beneficiario of responsaveList" >
+        <td colspan=10 class=BoletoValorEsquerdo style='text-align: left; padding-left : 0.1cm'>{{beneficiario?.nome_razao_social_beneficiario}}</td>
+        <td class=BoletoValorDireito>
+         </td>
+      </tr>   
+      <tr style="line-height:8px">
+        <td colspan=3 class=BoletoTituloEsquerdo>Data do Documento</td>
+        <td colspan=4 class=BoletoTituloEsquerdo>Número do Documento</td>
+        <td class=BoletoTituloEsquerdo>Espécie</td>
+        <td class=BoletoTituloEsquerdo>Aceite</td>
+        <td class=BoletoTituloEsquerdo>Data do Processamento</td>
+        <td class=BoletoTituloDireito>Nosso Número</td>
+      </tr>
+      <tr style="line-height:10px">
+        <td colspan=3 class=BoletoValorEsquerdo>{{boleto.createdAt | date: 'dd/MM/yyyy'}}</td>
+        <td colspan=4 class=BoletoValorEsquerdo></td>
+        <td class=BoletoValorEsquerdo>DM</td>
+        <td class=BoletoValorEsquerdo>N</td>
+        <td class=BoletoValorEsquerdo>{{boleto.createdAt | date: 'dd/MM/yyyy'}}</td>
+        <td class=BoletoValorDireito></td>
+      </tr>  
+      <tr style="line-height:8px">
+        <td colspan=3 class=BoletoTituloEsquerdo>Uso do Banco</td>
+        <td colspan=2 class=BoletoTituloEsquerdo>Carteira</td>
+        <td colspan=2 class=BoletoTituloEsquerdo>Moeda</td>
+        <td colspan=2 class=BoletoTituloEsquerdo>Quantidade</td>
+        <td class=BoletoTituloEsquerdo>(x) Valor</td>
+        <td class=BoletoTituloDireito>(=) Valor do Documento</td>
+      </tr>
+      <tr style="line-height:10px">
+        <td colspan=3 class=BoletoValorEsquerdo>&nbsp;</td>
+        <td colspan=2 class=BoletoValorEsquerdo></td>
+        <td colspan=2 class=BoletoValorEsquerdo>R$</td>
+        <td colspan=2 class=BoletoValorEsquerdo>&nbsp;</td>
+        <td class=BoletoValorEsquerdo>&nbsp;</td>
+        <td class=BoletoValorDireito>{{boleto.vlrmen | currency:'BRL':true}}</td>
+      </tr>  
+    
+      <tr>
+       
+        <td colspan=10 rowspan=9 class=BoletoValorEsquerdo style='text-align: left; vertical-align:top; padding-left : 0.1cm'>
+          Instrucoes:
+        <br/>  Após o vencimento cobrar multa de 4,20 e juros de R$0,07 ao dia
+        <br/>O pagamento dessa parcela não quita débito anterior.
+        </td>
+        <td class=BoletoValorDireito>{{boleto.instrucao_cobranca_2}}</td>
+      </tr>  
+      <tr style="line-height:10px">
+        <td class=BoletoTituloDireito>(-) Desconto/Abatimento</td>
+      </tr>  
+      <tr style="line-height:8px">
+        <td class=BoletoValorDireito>&nbsp;</td>
+      </tr>  
+      <tr style="line-height:10px">
+        <td class=BoletoTituloDireito>(+) Mora/Multa/Juros</td>
+      </tr>  
+      <tr style="line-height:8px">
+        <td class=BoletoValorDireito>&nbsp;</td>
+      </tr>  
+      <tr style="line-height:10px">
+        <td class=BoletoTituloDireito>(+) Outros Acrêscimos</td>
+      </tr>  
+      <tr style="line-height:8px">
+        <td class=BoletoValorDireito>&nbsp;</td>
+      </tr>  
+      <tr style="line-height:10px">
+        <td class=BoletoTituloDireito>(=) Valor Cobrado</td>
+      </tr>  
+      <tr style="line-height:8px">
+        <td class=BoletoValorDireito>&nbsp;</td>
+      </tr>                
+      <tr *ngFor="let pagador of responsaveList" >
+        <td rowspan=3 Class=BoletoTituloSacado>Pagador:  </td>
+        <td colspan=8 Class=BoletoValorSacado>{{pagador?.nome}}</td>
+        <td colspan=2 Class=BoletoValorSacado>CNPJ/CPF:{{pagador?.cpfResponsavel}}</td>
+      </tr> 
+      <tr *ngFor="let end of listEndereco">
+        <td colspan=10 Class=BoletoValorSacado>
+          {{end?.rua}} - {{end?.bairro}} </td>
+      </tr>
+      <tr *ngFor="let end of listEndereco">
+        <td colspan=10 Class=BoletoValorSacado>
+          {{end?.cidade}} / {{end?.estado}} -
+          {{end?.cep}}</td>
+      </tr>  
+      <tr>
+        <td colspan=8 Class=BoletoTituloSacador>Sacador / Avalista:</td>
+       
+        <td colspan=2 class="avalista">CNPJ/CPF</td>
+        <td class=BoletoValorDireito>&nbsp;</td>
+      </tr>
+       
+      <tr>
+        <td colspan=11 class=BoletoTituloDireito style='text-align: right; padding-right: 0.1cm'>
+          Recibo do Sacado - Autenticação Mecânica</td>
+      </tr>
+  
+      
+      <!-- <td>
+        <ngx-barcode [bc-value]="value" [bc-display-value]="true"></ngx-barcode>
+        
+      </td> -->
+    </table>
+    
+    </div>
+    </div>
+    <button class="btn btn-danger btn-block doNotPrint" (click)="onPrint()">Download PDF</button>
+</div>

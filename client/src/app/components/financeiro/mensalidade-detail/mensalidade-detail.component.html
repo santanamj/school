@@ -1,0 +1,52 @@
+
+  <div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+        <div class="card-body">  
+    <h3 class="card-title">Data de pagamento</h3>
+  
+    <form [formGroup]="form" (submit)="registroSubmit()">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              Valor da mensalidade: {{mensalidade?.vlrmen}}
+              <div class="md-form">
+                <input  type="text" class="form-control" formControlName="amount" 
+                appAllowDecimalNumber (blur)="transformTotal()" placeholder="Valor do boleto">
+              </div>
+            </div>
+            <div class="col-sm">           
+              <div class="md-form">
+                <mat-label>Data de pagamento</mat-label>
+                <mat-form-field>           
+                  <input matInput [matDatepicker]="picker" formControlName="boletoPagamento">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker startView="year"></mat-datepicker>
+                </mat-form-field>  
+              </div>
+            </div> 
+            <div class="col-sm">
+              <br/>
+              <div class="md-form">
+                <input type="text" class="form-control" name="observacao" formControlName="observacao"
+                  placeholder="Observação"/>
+              </div>
+            </div>    
+          </div>  
+        </div>
+        
+        <button type="submit" name="button" class="btn btn-primary btn-round" >Informar Manutenção</button>
+      </form>
+      <button type="submit" name="button" class="btn btn-secundary btn-round"  (click)="voltar()"  >Voltar para página do aluno</button>
+      
+        <button type="submit" name="button"  class="btn btn-warning btn-round"
+        (click)="cancelar()"  >Cancelar mensalidade</button>
+      </div>
+</div>
+</div>
+</div>
+</div>
+  

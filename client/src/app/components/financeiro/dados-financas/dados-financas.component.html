@@ -1,0 +1,77 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content" >
+  <div class="row" *ngIf="gestor === 'gestor'" >
+    <div class="col-lg-6" >
+        <div class="card card-chart">
+            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
+                <i class='fas fa-chart-line' style='font-size:24px'></i>
+              </button>
+          <div class="card-header">           
+            <h3 class="card-title">Mensalidade recebida no mês</h3>
+            <h4 class="card-category" >{{mensalidades?.length}}</h4>
+            <h3 class="card-title">Valor</h3>
+            <h4 class="card-category" >{{valorMensalidade | currency:'BRL':true}}</h4>
+            <div ngbDropdown>
+             
+              <div ngbDropdownMenu class="dropdown-menu-right">
+                <a class="dropdown-item" [routerLink]="['/financeiro/mensalidadeMes']"  >
+                 
+                  <div class="alert alert-info">
+                    <span> Acessar relatório mensalidade recebida</span>
+                  </div>
+                </a>
+                <a class="dropdown-item" [routerLink]="['/financeiro/mensalidadeMesdata']">                 
+                  <div class="alert alert-info">
+                    <span>  Acessar relatório por data de mensalidade recebida</span>
+                  </div>
+                </a>
+               
+              </div>
+            </div>
+          </div>
+        
+         
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card card-chart">
+            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
+                <i class='fas fa-chart-line' style='font-size:24px'></i>
+              </button>
+          <div class="card-header">           
+            <h3 class="card-title">Mensalidade pendentes no mês</h3>
+            <h4 class="card-category" >{{faltaMensalidades?.length}}</h4>
+            <h3 class="card-title">Valor</h3>
+            <h4 class="card-category" >{{valorMensalidadeFalte | currency:'BRL':true}}</h4>
+            <div ngbDropdown>
+             
+              <div ngbDropdownMenu class="dropdown-menu-right">
+                <a class="dropdown-item" [routerLink]="['/financeiro/mensalidadeMesFalte']">
+                
+                  <div class="alert alert-info">
+                    <span>  Acessar relatório mensal de pagamentos pendentes</span>
+                  </div>
+                </a>
+                <a class="dropdown-item" [routerLink]="['/financeiro/mensalidadeMesdataFalte']">
+                  
+                  <div class="alert alert-info">
+                    <span>  Acessar relatório por data de pagamentos pendentes</span>
+                  </div>
+                </a>
+               
+              </div>
+            </div>
+          </div>
+        
+         
+        </div>
+      </div>
+        </div>
+        <div  class="row" *ngIf="gestor != 'gestor'">
+          <div class="card">
+          Usuário não autorizado para acessar as informações, acesse como gestor.
+        </div>
+        </div>
+        </div>
+

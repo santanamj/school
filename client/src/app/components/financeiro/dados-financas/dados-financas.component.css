@@ -1,0 +1,7 @@
+.btn.btn-icon.btn-simple, .navbar .navbar-nav > a.btn.btn-icon.btn-simple{
+    float: right;
+    margin: 10px;
+}
+.card-title{
+    color: cornflowerblue;
+}
